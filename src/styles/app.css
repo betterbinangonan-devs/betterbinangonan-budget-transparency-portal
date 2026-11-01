@@ -122,6 +122,9 @@
 }
 .stat-accent { color: var(--accent); }
 .stat-sub { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 6px !important; line-height: 1.5; }
+.stats-years { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.stats-years .stat { font-size: 22px; }
+.stats-years-more { margin: 14px 0 0; }
 
 /* ---------- Sections ---------- */
 .section { margin: 0 0 40px; }
@@ -413,6 +416,8 @@ code { font-family: var(--font-mono); font-size: 0.9em; background: var(--paper-
   :root { --gutter: 18px; }
   .masthead-top-inner > span:first-child { display: none; }
   .masthead-links { justify-content: flex-start; gap: 14px; }
+  .masthead-links { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; white-space: nowrap; min-width: 0; }
+  .masthead-links::-webkit-scrollbar { display: none; }
   .masthead-name { font-size: 22px; }
   .masthead-with .label { display: none; }
   .masthead-with img { height: 20px; }
@@ -420,6 +425,11 @@ code { font-family: var(--font-mono); font-size: 0.9em; background: var(--paper-
   .stats > div { padding-left: 0 !important; padding-right: 12px; border-right: none; }
   .stats > div:nth-child(-n + 2) { border-bottom: 1px solid var(--rule-soft); }
   .stat { font-size: 26px; }
+  .stats.stats-years { display: block; }
+  .stats.stats-years > div { display: grid; grid-template-columns: 56px 1fr auto; align-items: baseline; gap: 12px; padding: 10px 0 !important; border-right: none; border-bottom: 1px solid var(--rule-soft); }
+  .stats.stats-years > div:last-child { border-bottom: none; }
+  .stats.stats-years .stat { font-size: 20px; margin-top: 0 !important; }
+  .stats.stats-years .stat-sub { margin-top: 0 !important; text-align: right; }
   .two-col { grid-template-columns: 1fr; gap: 24px; }
   .footer-links { grid-template-columns: 1fr 1fr; }
   .ocard-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -461,4 +471,5 @@ code { font-family: var(--font-mono); font-size: 0.9em; background: var(--paper-
   .footer-links { grid-template-columns: 1fr; }
   .list-head { flex-direction: column; align-items: flex-start; gap: 4px; }
   .field { flex: 1 1 100%; }
+  .build-strip-url { display: none; }
 }

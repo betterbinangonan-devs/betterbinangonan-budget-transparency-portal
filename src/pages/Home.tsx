@@ -6,6 +6,7 @@ import { shortNameOf, type DatasetKey } from '../config';
 import { Await, Disclaimers, ReasonTags, StatusChip } from '../components/Bits';
 import { PageHead } from '../components/Chrome';
 import OfficesSection from '../components/OfficesSection';
+import GaaTeaser from '../components/GaaTeaser';
 import { projectsCsv, downloadText } from '../lib/csv';
 import { count, php, phpDelta, plural } from '../lib/format';
 import { usePortal } from '../lib/portal-context';
@@ -128,8 +129,10 @@ function Projects({ scope, datasets }: { scope: ScopeResult; datasets: DatasetIn
 
       <Stats summary={summary} programName={programName} />
 
-      <OfficesSection />
+      <GaaTeaser />
 
+      <OfficesSection />
+      
       <section className="section" aria-labelledby="groups-h">
         <h2 id="groups-h" className="section-h">What the House bill did to them</h2>
         <div className="groups" role="group" aria-label="Filter by status">

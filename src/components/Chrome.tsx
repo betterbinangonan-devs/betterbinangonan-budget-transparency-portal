@@ -23,67 +23,73 @@ export function Masthead() {
   );
   return (
     <>
-    {config.buildYourOwnStrip !== false && (
-      // Above the masthead, so it scrolls away; a plain link to the source.
-      <a className="build-strip" href={SOURCE_CODE_URL} target="_blank" rel="noopener">
-        <span className="build-strip-title">Create your own transparency portal</span>
-        <span className="build-strip-url">
-          {SOURCE_CODE_URL.replace(/^https:\/\//, '')} <span aria-hidden="true">→</span>
-        </span>
-      </a>
-    )}
-    <header className="masthead">
-      <div className="masthead-top">
-        <div className="page masthead-top-inner">
-          <span className="muted">{today}</span>
-          <span className="masthead-links">
-            <a href={NATIONAL_URL} target="_blank" rel="noopener">
-              National picture <span aria-hidden="true">↗</span>
-            </a>
-            <a href={`${client.base}/docs`} target="_blank" rel="noopener">
-              API <span aria-hidden="true">↗</span>
-            </a>
-            <a href={SOURCE_CODE_URL} target="_blank" rel="noopener">
-              Build your own <span aria-hidden="true">↗</span>
-            </a>
+      {config.buildYourOwnStrip !== false && (
+        // Above the masthead, so it scrolls away; a plain link to the source.
+        <a className="build-strip" href={SOURCE_CODE_URL} target="_blank" rel="noopener">
+          <span className="build-strip-title">Create your own transparency portal</span>
+          <span className="build-strip-url">
+            {SOURCE_CODE_URL.replace(/^https:\/\//, '')} <span aria-hidden="true">→</span>
           </span>
-        </div>
-      </div>
-      <div className="page masthead-main">
-        <Link to="/" className="masthead-title">
-          {config.logo && <img src={config.logo} alt="" className="masthead-logo" />}
-          <span>
-            <span className="masthead-kicker">
-              {KIND_LABELS[config.kind]} <span aria-hidden="true">·</span> Budgets 2020–2027
-            </span>
-            <span className="masthead-name">{config.name}</span>
-          </span>
-        </Link>
-        <a className="masthead-with" href="https://bettergov.ph" target="_blank" rel="noopener">
-          <span className="label">Data from</span>
-          <img src={BETTERGOV_LOGO} alt="BetterGov.ph" width="128" height="28" />
         </a>
-      </div>
-      <nav className="subnav" aria-label="Sections">
-        <div className="page subnav-inner">
-          {NAV.map((n) => {
-            const active = pathname === n.to && (n.hash ? hash === n.hash : hash !== '#offices');
-            return (
-              <Link
-                key={n.label}
-                to={{ pathname: n.to, hash: n.hash }}
-                className={active ? 'active' : undefined}
-                aria-current={active ? 'page' : undefined}
-                // "Projects" from further down the same page goes back to the top.
-                onClick={() => !n.hash && pathname === n.to && window.scrollTo(0, 0)}
-              >
-                {n.label}
-              </Link>
-            );
-          })}
+      )}
+      <header className="masthead">
+        <div className="masthead-top">
+          <div className="page masthead-top-inner">
+            <span className="muted">{today}</span>
+            <span className="masthead-links">
+              {config.navLinks?.map((l) => (
+                <a key={l.href} href={l.href} target="_blank" rel="noopener">
+                  {l.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+              <a href={NATIONAL_URL} target="_blank" rel="noopener">
+                National picture <span aria-hidden="true">↗</span>
+              </a>
+              <a href={`${client.base}/docs`} target="_blank" rel="noopener">
+                API <span aria-hidden="true">↗</span>
+              </a>
+              <a href={SOURCE_CODE_URL} target="_blank" rel="noopener">
+                Build your own <span aria-hidden="true">↗</span>
+              </a>
+            </span>
+          </div>
         </div>
-      </nav>
-    </header>
+        <div className="page masthead-main">
+          <Link to="/" className="masthead-title">
+            {config.logo && <img src={config.logo} alt="" className="masthead-logo" />}
+            <span>
+              <span className="masthead-kicker">
+                {KIND_LABELS[config.kind]} <span aria-hidden="true">·</span> Budgets 2020–2027
+              </span>
+              <span className="masthead-name">{config.name}</span>
+            </span>
+          </Link>
+          <a className="masthead-with" href="https://bettergov.ph" target="_blank" rel="noopener">
+            <span className="label">Data from</span>
+            <img src={BETTERGOV_LOGO} alt="BetterGov.ph" width="128" height="28" />
+          </a>
+        </div>
+        <nav className="subnav" aria-label="Sections">
+          <div className="page subnav-inner">
+            {NAV.map((n) => {
+              const active = pathname === n.to && (n.hash ? hash === n.hash : hash !== '#offices');
+              return (
+                <Link
+                  key={n.label}
+                  to={{ pathname: n.to, hash: n.hash }}
+                  className={active ? 'active' : undefined}
+                  aria-current={active ? 'page' : undefined}
+                  // "Projects" from further down the same page goes back to the top.
+                  onClick={() => !n.hash && pathname === n.to && window.scrollTo(0, 0)}
+                >
+                  {n.label}
+                </Link>
+              );
+            })}
+
+          </div>
+        </nav>
+      </header>
     </>
   );
 }

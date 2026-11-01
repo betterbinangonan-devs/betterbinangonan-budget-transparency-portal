@@ -1,33 +1,36 @@
-/**
- * This portal's configuration: the only file a fork needs to edit.
- * What each field means: src/config.ts. Generate one with `npm run setup`;
- * check it against the live API with `npm run check`.
- *
- * This default is a worked example: the Province of Bohol. Its three DPWH
- * district engineering offices bring in every DPWH line listed under them;
- * the place name brings in lines from all four programs whose title names
- * Bohol (Central Office projects, farm-to-market roads, health facilities,
- * irrigation). More examples in examples/.
+﻿/**
+ * Binangonan Transparency Portal
  */
 import { defineConfig } from './src/config';
 
 export default defineConfig({
-  id: 'bohol-province',
-  kind: 'province',
-  name: 'Province of Bohol',
-  shortName: 'Bohol',
-  operator: { name: 'BetterGov.ph', url: 'https://bettergov.ph' },
-  // Where this example is deployed. Change it (or remove it) in your fork.
-  siteUrl: 'https://transparency-portal.bettergov.workers.dev',
+  id: 'binangonan-rizal',
+  kind: 'municipality',
+  name: 'Municipality of Binangonan, Rizal',
+  shortName: 'Binangonan',
+  operator: { name: 'BetterBinangonan.org', url: 'https://betterbinangonan.org' },
+  siteUrl: 'https://budget.betterbinangonan.org',
   scope: {
-    offices: [
-      'Bohol 1st District Engineering Office',
-      'Bohol 2nd District Engineering Office',
-      'Bohol 3rd District Engineering Office',
+    places: [{ label: 'Binangonan', region: 'IV-A' }],
+    districts: ['leg:rizal:1st'],
+    exclude: [
+      {
+        key: 'gaa:18-001|completion of multi purpose building binangonan payao zamboanga sibugay',
+        reason: 'Barangay Binangonan in Payao, Zamboanga Sibugay: a namesake, not Binangonan, Rizal.',
+      },
+      {
+        key: 'gaa:18-001|concreting of local roadsjunction imeldaalicia road binangonannanan road payao zamboanga sibugay',
+        reason: 'Barangay Binangonan in Payao, Zamboanga Sibugay: a namesake, not Binangonan, Rizal.',
+      },
+      {
+        key: 'gaa:18-001|road widening including drainage  binangonan  angono  taytay diversion road angono section angono rizal',
+        reason: 'The Angono Section of the Binangonan–Angono–Taytay Diversion Road, located in Angono.',
+      },
     ],
-    places: [{ label: 'Bohol', region: 'VII' }],
-    districts: ['leg:bohol:1st', 'leg:bohol:2nd', 'leg:bohol:3rd'],
-    exclude: [],
   },
+  navLinks: [
+    { label: 'BetterBinangonan.org', href: 'https://betterbinangonan.org' },
+    { label: 'Binangonan DPWH Infra Projects', href: 'https://dpwh-projects.betterbinangonan.org' },
+  ],
   reporting: { enabled: false },
 });

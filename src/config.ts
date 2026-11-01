@@ -44,6 +44,11 @@ export interface Exclusion {
   reason: string;
 }
 
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
 export interface PortalConfig {
   /** Stable id, lowercase with hyphens. Sent with citizen reports: "bohol-province". */
   id: string;
@@ -63,6 +68,7 @@ export interface PortalConfig {
    * linking to the source on GitHub. On unless set to false.
    */
   buildYourOwnStrip?: boolean;
+  navLinks?: NavLink[];  
   /** Budget API host. Default https://budget.bettergov.ph. VITE_API_BASE overrides it. */
   api?: string;
   scope: {
